@@ -29,6 +29,11 @@ figma.ui.onmessage = (message: MessageDataFromUI) => {
 			return figma.notify(notification as string, options);
 		}
 
+		case 'resize-window': {
+			const { width = 560, height = 500 } = message.size;
+			return figma.ui.resize(width, height);
+		}
+
 		case 'query': {
 			const { type, query } = message;
 			const results = coordinate(query);

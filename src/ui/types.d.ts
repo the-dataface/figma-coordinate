@@ -161,7 +161,7 @@ declare global {
 	}
 
 	interface MessageDataFromUI extends MessageData {
-		type: 'notify' | 'query';
+		type: 'notify' | 'query' | 'resize-window';
 	}
 
 	type TabName = string;

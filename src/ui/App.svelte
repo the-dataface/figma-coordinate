@@ -5,16 +5,17 @@
 	import { DownloadIcon, CompassIcon } from 'svelte-feather-icons';
 	import Message, { postMessage } from '$ui/lib/components/Message.svelte';
 	import FigmaIcon from './lib/components/figma-icons/FigmaIcon.svelte';
+	import Footer from './furniture/Footer.svelte';
 
 	let query = 'COORDINATE';
 
-	let results: Results | undefined = undefined;
+	let results: ({ query: string } & Results) | undefined = undefined;
 </script>
 
 <!-- example message. hook into the Message component to capture events + data -->
 <Message
 	on:coordinated={(e) => {
-		results = e.detail.results;
+		results = { query, ...e.detail.results };
 	}}
 />
 
@@ -25,7 +26,7 @@
 <div class="w-full h-full flex flex-row flex-wrap">
 	<main
 		id="main"
-		class="w-full min-w-[320px] flex flex-col gap-8 flex-nowrap p-4 h-full overflow-y-auto pt-12"
+		class="w-full min-w-[320px] flex flex-col gap-8 flex-nowrap p-4 h-full overflow-y-auto pt-12 pb-12"
 	>
 		<header
 			class="flex flex-col gap-2 items-center justify-center max-w-sm mx-auto text-center"
@@ -90,7 +91,9 @@
 					)}
 				</p>
 
-				<div class="rounded-md border border-figma-border p-4 relative">
+				<div
+					class="rounded-md border border-figma-border p-4 relative bg-figma-color-bg-secondary"
+				>
 					{#if results && results.count > 0}
 						<div class="absolute top-2 right-2.5 flex flex-row gap-2">
 							<a
@@ -121,6 +124,8 @@
 				</div>
 			</section>
 		{/if}
+
+		<Footer />
 	</main>
 </div>
 

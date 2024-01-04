@@ -3,14 +3,14 @@
 	"private": true,
 	"version": "1.0.0",
 	"description": "Turn nodes into coordinates",
-	"homepage": "https://www.github.com/the-dataface/figma-plugin-svelte-vite",
+	"homepage": "https://www.github.com/the-dataface/figma-coordinate",
 	"repository": {
 		"type": "git",
-		"url": "https://www.github.com/the-dataface/figma-plugin-svelte-vite.git"
+		"url": "https://www.github.com/the-dataface/figma-coordinate.git"
 	},
 	"bugs": {
 		"email": "sawyer@thedataface.com",
-		"url": "https://www.github.com/the-dataface/figma-plugin-svelte-vite/issues/new/choose"
+		"url": "https://www.github.com/the-dataface/figma-coordinate/issues/new/choose"
 	},
 	"license": "MIT",
 	"keywords": [
