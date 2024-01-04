@@ -157,11 +157,11 @@ declare global {
 
 	// messages from plugin to UI
 	interface MessageDataFromPlugin extends MessageData {
-		type: 'init';
+		type: 'init' | 'coordinated';
 	}
 
 	interface MessageDataFromUI extends MessageData {
-		type: 'notify' | 'resize-window';
+		type: 'notify' | 'query';
 	}
 
 	type TabName = string;
@@ -171,6 +171,21 @@ declare global {
 		tabs: SvelteComponent[];
 		tab: Writable<TabName>;
 	}
+
+	type Results = {
+		count: number;
+		nodes: {
+			[key: FrameNode['name']]: {
+				[key: SceneNode['name']]: {
+					x: number;
+					y: number;
+					width: number;
+					height: number;
+					type: SceneNode['type'];
+				};
+			};
+		};
+	};
 }
 
 export {};

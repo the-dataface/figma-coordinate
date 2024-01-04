@@ -3,14 +3,7 @@
  * @see {@link https://www.figma.com/plugin-docs/|Figma Plugin Docs}
  */
 
-// Determine if the plugin is running in a design file or a figjam file
-const isFigma = figma.editorType === 'figma';
-const isFigjam = figma.editorType === 'figjam';
-
-const figmaPostMessage = (message: MessageDataFromPlugin) => {
-	figma.ui.postMessage(message);
-	return;
-};
+import coordinate from './coordinate';
 
 /**
  * RECOMMENDED: ignore invisible nodes. speeds up document traversal
@@ -24,9 +17,6 @@ figma.skipInvisibleInstanceChildren = true;
  */
 figma.showUI(__html__, { width: 560, height: 500, themeColors: true });
 
-// plugin initialized
-figmaPostMessage({ type: 'init' });
-
 // message handle
 figma.ui.onmessage = (message: MessageDataFromUI) => {
 	if (!message.type) return;
@@ -39,9 +29,10 @@ figma.ui.onmessage = (message: MessageDataFromUI) => {
 			return figma.notify(notification as string, options);
 		}
 
-		case 'resize-window': {
-			const { width = 560, height = 500 } = message.size;
-			return figma.ui.resize(width, height);
+		case 'query': {
+			const { type, query } = message;
+			const results = coordinate(query);
+			return results;
 		}
 	}
 };
