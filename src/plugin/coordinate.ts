@@ -77,7 +77,7 @@ export default async (query: string = 'COORDINATE') => {
 					typeof node.fontSize === 'number'
 				) {
 					results.nodes[baseFrame.name][id].lineHeight =
-						node.lineHeight.value * node.fontSize;
+						(node.lineHeight.value / 100) * node.fontSize;
 				}
 			}
 
