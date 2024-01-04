@@ -172,17 +172,27 @@ declare global {
 		tab: Writable<TabName>;
 	}
 
+	interface Result {
+		x: number;
+		y: number;
+		width: number;
+		height: number;
+		type: SceneNode['type'];
+		characters?: string;
+		fontFamily?: string;
+		fontWeight?: string;
+		italic?: boolean;
+		fontSize?: number;
+		color?: string;
+		lineHeight?: number;
+		opacity?: number;
+	}
+
 	type Results = {
 		count: number;
 		nodes: {
 			[key: FrameNode['name']]: {
-				[key: SceneNode['name']]: {
-					x: number;
-					y: number;
-					width: number;
-					height: number;
-					type: SceneNode['type'];
-				};
+				[key: SceneNode['name']]: Result;
 			};
 		};
 	};

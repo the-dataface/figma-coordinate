@@ -52,7 +52,7 @@
 					type="text"
 					dir="auto"
 					spellcheck="false"
-					on:focus={(e) => e.target.select()}
+					on:focus={(e) => e.target?.select()}
 					bind:value={query}
 				/>
 			</label>
@@ -76,7 +76,13 @@
 				in:fly={{ y: 300, easing: cubicOut }}
 			>
 				<p class="text-sm text-figma-color-text-secondary pl-1">
-					{results.count} node{pluralize(results.nodes.length, 's', '')} found on
+					{results.count} node{pluralize(
+						Object.values(results.nodes)
+							.map((n) => Object.values(n).length)
+							.reduce((a, b) => a + b, 0),
+						's',
+						''
+					)} found on
 					{Object.keys(results.nodes).length} page{pluralize(
 						Object.keys(results.nodes).length,
 						's',
@@ -107,7 +113,11 @@
 						</div>
 					{/if}
 
-					<pre>{JSON.stringify(results.nodes, null, 2)}</pre>
+					<pre class="whitespace-break-spaces">{JSON.stringify(
+							results.nodes,
+							null,
+							2
+						)}</pre>
 				</div>
 			</section>
 		{/if}
