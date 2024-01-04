@@ -1,14 +1,14 @@
 <p align='center'>
-<img src="https://raw.githubusercontent.com/the-dataface/figma-plugin-svelte-vite/master/.github/assets/logo.png" height="100px" alt="Logo" />
+<img src="https://raw.githubusercontent.com/the-dataface/figma-plugin-svelte-vite/master/.github/assets/logo.svg" height="100px" alt="Logo" />
 </p>
 
 <h1 align="center">
-  Figma Plugin Boilerplate: Svelte + Vite
+  Figma Coordinate
 </h1>
 
 <!-- Slogan -->
 <p align="center">
-   Create scalable Figma plugins with ease, using the power of Svelte + Vite!
+   Extract coordinates from targeted Figma nodes.
 </p>
 
 <!-- Badges -->
@@ -17,35 +17,25 @@
   <!-- Github Badges -->
   <img src="https://raw.githubusercontent.com/TheSpawnProject/TheSpawnLanguage/master/.github/assets/github-badge.png" height="20px" />
 
-  <a href="https://github.com/the-dataface/figma-plugin-svelte-vite/commits/master">
-    <img src="https://img.shields.io/github/last-commit/the-dataface/figma-plugin-svelte-vite" alt="Last commit"/>
+  <a href="https://github.com/the-dataface/figma-coordinate/commits/master">
+    <img src="https://img.shields.io/github/last-commit/the-dataface/figma-coordinate" alt="Last commit"/>
   </a>
 
-  <a href="https://github.com/the-dataface/figma-plugin-svelte-vite/issues">
-    <img src="https://img.shields.io/github/issues/the-dataface/figma-plugin-svelte-vite" alt="Issues"/>
+  <a href="https://github.com/the-dataface/figma-coordinate/issues">
+    <img src="https://img.shields.io/github/issues/the-dataface/figma-coordinate" alt="Issues"/>
   </a>
 
 </p>
 
-This is a boilerplate for building Figma plugins with Svelte, Vite, and TypeScript. To learn more about building plugins, see the [Figma Plugin API documentation](https://www.figma.com/plugin-docs/intro/)
+A simple plugin for quickly targeting nodes and extracting key positional data (X, Y, width, height) for use in other applications. 
 
-_Based on the great work of [figma-plugin-react-vite](https://github.com/CoconutGoodie/figma-plugin-react-vite)_
+_Built using [The DataFace's Figma plugin template](https://github.com/the-dataface/figma-plugin-svelte-vite)_
 
-## Key Features
+## How-to
 
-1. **_Tabular_**: Use as many tabs as needed to create a multi-tabbed UI. Create a new entry in `src/ui/furniture/tabs/` with an associated `name` and `icon` in the module context. It will be automatically added to the UI's nav bar.
-
-2. **_Common Code_**: Figma plugins with an interface are rendered using Figma-side code (code.ts on Figma docs) and sandboxed UI code (index.html on Figma docs). This template keeps the two sides separate (`src/ui` and `src/plugin`) but keeps common code available via `src/common`.
-
-3. **_Communicative_**: Plugin and UI code can communicate via postMessaging. This boilerplate has a built-in postMessage handler to send messages between the plugin and UI. (See /src/ui/lib/components/Message.svelte for code source and examples)
-
-4. **_Iterative_**: Configure your figma.manifest.ts credentials just once. Run `npm run build` and your plugin is ready to publish via your `/dist` folder!
-
-5. **_One File_**: Figma UI plugins accept only a single file each for Figma-side code (js) and UI-side code (html), which makes deployment of multiple files linked to each other impossible. This template is configured with [vite-single-file](https://www.npmjs.com/package/vite-plugin-singlefile) to bundle or inline files, imports, vectors and more.
-
-6. **_Figma's Icons_**: This boilerplate is configured with Figma's icon library for consistency and ease of use. Just use the `<FigmaIcon />` component to render an SVG icon from the library. (See /src/ui/lib/components/figma-icons/FigmaIcon.svelte for code source and examples)
-
-7. **_Tailwind-ready_**: This boilerplate is configured with [tailwindcss](https://tailwindcss.com/) and [postcss](https://postcss.org/) for out-of-the-box utilities and styling.
+1. Prefix desired nodes with a uniform string (e.g. `COORDINATE` or `#` or `@`).
+2. Once the plugin is initialized, enter that string in the search box (the default is `COORDINATE`) and run the command.
+3. The positional data will show up below in the plugin's UI as JSON. You can download the results directly using the download button in the top-right corner of the results box.
 
 ## File Structure
 
