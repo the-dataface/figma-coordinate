@@ -45,6 +45,9 @@ export default async (query: string = 'COORDINATE') => {
 				results.nodes[baseFrame.name][id].characters = node.characters;
 				results.nodes[baseFrame.name][id].opacity = node.opacity;
 
+				results.nodes[baseFrame.name][id].textAlignment =
+					node.textAlignHorizontal.toUpperCase() as Result['textAlignment'];
+
 				// symbols are complicated, oof
 
 				if (typeof node.fontName !== 'symbol') {

@@ -185,6 +185,7 @@ declare global {
 		fontSize?: number;
 		color?: string;
 		lineHeight?: number;
+		textAlignment?: 'LEFT' | 'RIGHT' | 'CENTER';
 		opacity?: number;
 		isAsset?: boolean;
 	}
