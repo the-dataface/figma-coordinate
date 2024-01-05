@@ -40,52 +40,62 @@ export default async (query: string = 'COORDINATE') => {
 			type: node.type,
 		};
 
-		if (node.type === 'TEXT') {
-			results.nodes[baseFrame.name][id].characters = node.characters;
-			results.nodes[baseFrame.name][id].opacity = node.opacity;
+		switch (node.type) {
+			case 'TEXT': {
+				results.nodes[baseFrame.name][id].characters = node.characters;
+				results.nodes[baseFrame.name][id].opacity = node.opacity;
 
-			// symbols are complicated, oof
+				// symbols are complicated, oof
 
-			if (typeof node.fontName !== 'symbol') {
-				const { family, style } = node.fontName as FontName;
+				if (typeof node.fontName !== 'symbol') {
+					const { family, style } = node.fontName as FontName;
 
-				results.nodes[baseFrame.name][id].fontFamily = family;
+					results.nodes[baseFrame.name][id].fontFamily = family;
 
-				results.nodes[baseFrame.name][id].fontWeight = style.split(' ')[0];
+					results.nodes[baseFrame.name][id].fontWeight = style.split(' ')[0];
 
-				results.nodes[baseFrame.name][id].italic = style
-					.toLowerCase()
-					.includes('italic');
-			}
-
-			if (typeof node.fontSize !== 'symbol') {
-				results.nodes[baseFrame.name][id].fontSize = node.fontSize;
-			}
-
-			if (
-				typeof node.lineHeight !== 'symbol' &&
-				node.lineHeight.unit !== 'AUTO'
-			) {
-				//  pixel value
-				if (node.lineHeight.unit === 'PIXELS') {
-					results.nodes[baseFrame.name][id].lineHeight = node.lineHeight.value;
+					results.nodes[baseFrame.name][id].italic = style
+						.toLowerCase()
+						.includes('italic');
 				}
 
-				// convert to pixels, if possible
+				if (typeof node.fontSize !== 'symbol') {
+					results.nodes[baseFrame.name][id].fontSize = node.fontSize;
+				}
+
 				if (
-					node.lineHeight.unit === 'PERCENT' &&
-					typeof node.fontSize === 'number'
+					typeof node.lineHeight !== 'symbol' &&
+					node.lineHeight.unit !== 'AUTO'
 				) {
-					results.nodes[baseFrame.name][id].lineHeight =
-						(node.lineHeight.value / 100) * node.fontSize;
+					//  pixel value
+					if (node.lineHeight.unit === 'PIXELS') {
+						results.nodes[baseFrame.name][id].lineHeight =
+							node.lineHeight.value;
+					}
+
+					// convert to pixels, if possible
+					if (
+						node.lineHeight.unit === 'PERCENT' &&
+						typeof node.fontSize === 'number'
+					) {
+						results.nodes[baseFrame.name][id].lineHeight =
+							(node.lineHeight.value / 100) * node.fontSize;
+					}
 				}
+
+				if (typeof node.fills !== 'symbol' && node.fills[0].type === 'SOLID') {
+					const { r, g, b } = node.fills[0].color;
+					results.nodes[baseFrame.name][id].color = `rgb(${[r, b, g]
+						.map((c) => Math.round(c * 255))
+						.join(',')})`;
+				}
+
+				break;
 			}
 
-			if (typeof node.fills !== 'symbol' && node.fills[0].type === 'SOLID') {
-				const { r, g, b } = node.fills[0].color;
-				results.nodes[baseFrame.name][id].color = `rgb(${[r, b, g]
-					.map((c) => Math.round(c * 255))
-					.join(',')})`;
+			case 'RECTANGLE': {
+				results.nodes[baseFrame.name][id].isAsset = node.isAsset;
+				break;
 			}
 		}
 	}

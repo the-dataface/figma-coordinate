@@ -186,6 +186,7 @@ declare global {
 		color?: string;
 		lineHeight?: number;
 		opacity?: number;
+		isAsset?: boolean;
 	}
 
 	type Results = {
