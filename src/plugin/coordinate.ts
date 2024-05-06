@@ -36,10 +36,12 @@ export default async (query: string = 'COORDINATE') => {
 
 		const id = node.name.slice(query.length);
 
+		console.log(baseFrame);
+
 		// store under page -> node -> stuff
 		results.nodes[baseFrame.name][id] = {
-			x: node.absoluteTransform[0][2] - baseFrame.absoluteTransform[0][2],
-			y: node.absoluteTransform[1][2] - baseFrame.absoluteTransform[1][2],
+			x: node.absoluteTransform[0][2] - baseFrame?.absoluteTransform[0][2],
+			y: node.absoluteTransform[1][2] - baseFrame?.absoluteTransform[1][2],
 			width: node.width,
 			height: node.height,
 			type: node.type,
