@@ -36,8 +36,6 @@ export default async (query: string = 'COORDINATE') => {
 
 		const id = node.name.slice(query.length);
 
-		console.log(baseFrame);
-
 		// store under page -> node -> stuff
 		results.nodes[baseFrame.name][id] = {
 			x: node.absoluteTransform[0][2] - baseFrame?.absoluteTransform[0][2],
