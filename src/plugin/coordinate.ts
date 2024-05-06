@@ -12,6 +12,8 @@ export default async (query: string = 'COORDINATE') => {
 
 	results.count = foundNodes.length;
 
+	const acceptableParents = new Set(['FRAME', 'SECTION', 'PAGE']);
+
 	for (let i = 0; i < foundNodes.length; i++) {
 		const node = foundNodes[i];
 
@@ -19,11 +21,14 @@ export default async (query: string = 'COORDINATE') => {
 		let baseFrame = node.parent;
 
 		// traverse up the tree until we find a page or frame
-		while (baseFrame?.parent?.type !== 'PAGE' && baseFrame?.type === 'FRAME') {
+		while (
+			baseFrame?.parent?.type !== 'PAGE' &&
+			(baseFrame?.type === 'FRAME' || baseFrame?.type === 'SECTION')
+		) {
 			baseFrame = baseFrame?.parent;
 		}
 
-		if (!baseFrame || baseFrame.type !== 'FRAME') continue;
+		if (!baseFrame || !acceptableParents.has(baseFrame.type)) continue;
 
 		// ensure we have a frame
 		if (!results.nodes) results.nodes = {};
