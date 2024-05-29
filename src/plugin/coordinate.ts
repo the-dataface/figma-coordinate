@@ -1,4 +1,7 @@
 export default async (query: string = 'COORDINATE') => {
+	// wait for page to load
+	await figma.currentPage.loadAsync();
+
 	// stash nodes in object where key = node name and value = coordinate stuff
 	const results: Results = {
 		count: 0,

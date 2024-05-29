@@ -84,7 +84,7 @@
 						's',
 						''
 					)} found on
-					{Object.keys(results.nodes).length} page{pluralize(
+					{Object.keys(results.nodes).length} frame{pluralize(
 						Object.keys(results.nodes).length,
 						's',
 						''
