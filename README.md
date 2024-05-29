@@ -33,7 +33,7 @@ _Built using [The DataFace's Figma plugin template](https://github.com/the-dataf
 
 ## How-to
 
-1. Prefix desired nodes with a uniform string (e.g. `COORDINATE` or `#` or `@`).
+1. Prefix desired nodes with a uniform string (e.g. `COORDINATE.` or `#` or `@`).
 2. Once the plugin is initialized, enter that string in the search box (the default is `COORDINATE`) and run the command.
 3. The positional data will show up below in the plugin's UI as JSON. You can download the results directly using the download button in the top-right corner of the results box.
 

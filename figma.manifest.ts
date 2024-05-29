@@ -9,7 +9,6 @@ export default {
 	capabilities: [],
 	enableProposedApi: false,
 	editorType: ['figma'],
-	networkAccess: {
-		allowedDomains: ['none'],
-	},
+	documentAccess: 'dynamic-page',
+	networkAccess: { allowedDomains: ['none'] },
 };

@@ -7,7 +7,7 @@
 	import FigmaIcon from './lib/components/figma-icons/FigmaIcon.svelte';
 	import Footer from './furniture/Footer.svelte';
 
-	let query = 'COORDINATE';
+	let query = 'COORDINATE.';
 
 	let results: ({ query: string } & Results) | undefined = undefined;
 </script>
